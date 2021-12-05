@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IAFinal.MainPage"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <Grid ColumnDefinitions="15*, 70*, 15*"
+              Margin="0, 100">
+            <StackLayout Grid.Column="1">
+                <Label Text="Escoge tus fotos"
+                       FontSize="Header"
+                       TextColor="#080808"/>
+
+                <Label Text="Elige las fotos que mas te gusten haciendo clic en el botón de me gusta."
+                       FontSize="Subtitle"
+                       TextColor="#080808"/>
+
+                <CarouselView x:Name="CarouselView"
+                              CurrentItemChanged="CarouselView_CurrentItemChanged"
+                              HeightRequest="500"
+                              PeekAreaInsets="100">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView HeightRequest="500">
+                                <Image Source="{Binding Image}" Aspect="AspectFit" Grid.Row="0"/>
+
+                            </ContentView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <Frame CornerRadius="50" HorizontalOptions="Center">
+                    <ImageButton Source="Assets/heart.scale-300.png"
+                             x:Name="chosed"
+                             HeightRequest="40"
+                             WidthRequest="40"
+                             BackgroundColor="#CF755A"
+                             Clicked="SelectPhoto"/>
+                </Frame>
+
+                <!--<RelativeLayout HeightRequest="500">
+
+                    <ListView x:Name="listView" HorizontalScrollBarVisibility="Always" Rotation="270" SelectionMode="None" RowHeight="550"
+                              ItemTapped="listView_ItemTapped"
+                              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-250}"
+                              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=250}"
+                              RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=500}"
+                              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                        <ListView.ItemTemplate Padding="1" TranslationX="500">
+
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="*" HeightRequest="500">
+                                        <Image Source="{Binding Image}" Rotation="90" HeightRequest="500" Aspect="AspectFit" Grid.Column="0"/>
+
+                                        <Image Source="Assets/heart.scale-300.png"
+                                               HeightRequest="40"
+                                               WidthRequest="40"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Center"
+                                               IsVisible="{Binding IsSelected}"
+                                               Margin="10"
+                                               Grid.Column="0"
+                                               Rotation="90"/>
+
+                                    </Grid>
+
+                                </ViewCell>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </RelativeLayout>-->
+
+                <StackLayout Orientation="Horizontal" Margin="0, 50">
+
+                    <Label Text="Listo? Haz clic en el siguiente botón"
+                       FontSize="Large"
+                       TextColor="#080808"/>
+
+                    <Button Text="Elegir fotos"
+                            Clicked="Choose_Clicked"
+                            HorizontalOptions="EndAndExpand"
+                            TextColor="White"
+                            BackgroundColor="#CF755A"/>
+
+                </StackLayout>
+
+                <Label Text="Paquetes"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Header"
+                       TextColor="#080808"/>
+                <Frame BackgroundColor="#CF755A" Padding="5" Margin="0,10">
+                    <StackLayout Orientation="Horizontal" Padding="40" BackgroundColor="White">
+                        <Label Text="Básico"
+                               TextColor="#080808"
+                               FontSize="Title"
+                               HorizontalTextAlignment="Start"/>
+                        <Label Text="$600"
+                               TextColor="#080808"
+                               FontSize="Subtitle"
+                               HorizontalOptions="EndAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#CF755A" Padding="5" Margin="0,10">
+                    <StackLayout Orientation="Horizontal" Padding="40" BackgroundColor="White">
+                        <Label Text="Especial"
+                               TextColor="#080808"
+                               FontSize="Title"
+                               HorizontalTextAlignment="Start"/>
+                        <Label Text="$900"
+                               TextColor="#080808"
+                               FontSize="Subtitle"
+                               HorizontalOptions="EndAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#CF755A" Padding="5" Margin="0,10">
+                    <StackLayout Orientation="Horizontal" Padding="40" BackgroundColor="White">
+                        <Label Text="Profesional"
+                               TextColor="#080808"
+                               FontSize="Title"
+                               HorizontalTextAlignment="Start"/>
+                        <Label Text="$1,500"
+                               TextColor="#080808"
+                               FontSize="Subtitle"
+                               HorizontalOptions="EndAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                    </StackLayout>
+                </Frame>
+
+
+
+                <ListView x:Name="lvPredictions"
+                          SelectionMode="None">
+
+                    <ListView.Header>
+                        <Label Text="Tipos de foto"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Header"
+                               TextColor="#080808"/>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="#CF755A" Padding="5" Margin="0,10">
+                                    <StackLayout Orientation="Horizontal" Padding="40" BackgroundColor="White">
+                                        <Image Source="{Binding Image}"
+                                               HeightRequest="100"
+                                               WidthRequest="100"
+                                               Aspect="AspectFit"/>
+                                        <Label Text="{Binding Prediction, StringFormat='Esta foto es de tipo {0}'}"
+                                               TextColor="#080808"
+                                               FontSize="Subtitle"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+            </StackLayout>
+        </Grid>
+
+
+    </ScrollView>
+
+</ContentPage>
